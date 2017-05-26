@@ -18,7 +18,7 @@ Add the following line to the `composer.json` file:
 
 ``` json
 {
-	"repositories":
+    "repositories":
     [
         {
             "type": "vcs",
