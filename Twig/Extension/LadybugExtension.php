@@ -1,9 +1,6 @@
 <?php
-
 namespace RaulFraile\Bundle\LadybugBundle\Twig\Extension;
-
 use Ladybug\Dumper;
-
 /**
  * Twig extension for the bundle.
  */
@@ -15,7 +12,6 @@ class LadybugExtension extends \Twig_Extension
      * Ladybug Dumper
      */
     private $ladybug;
-
     /**
      * Main constructor
      *
@@ -25,7 +21,6 @@ class LadybugExtension extends \Twig_Extension
     {
         $this->ladybug = $ladybug;
     }
-
     /**
      * Getter.
      *
@@ -34,11 +29,10 @@ class LadybugExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'ladybug_dump' => new \Twig_Filter_Method($this, 'ladybug_dump', array('is_safe' => array('html'))),
-            'ld'  => new \Twig_Filter_Method($this, 'ladybug_dump', array('is_safe' => array('html')))
+            new \Twig_SimpleFilter('ladybug_dump', array($this, 'ladybug_dump'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('ld', array($this, 'ladybug_dump'), array('is_safe' => array('html')))
         );
     }
-
     /**
      * Getter.
      *
@@ -47,11 +41,10 @@ class LadybugExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'ladybug_dump' => new \Twig_Function_Method($this, 'ladybug_dump', array('is_safe' => array('html'))),
-            'ld'  => new \Twig_Function_Method($this, 'ladybug_dump', array('is_safe' => array('html')))
+            new \Twig_SimpleFunction('ladybug_dump', array($this, 'ladybug_dump'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('ld', array($this, 'ladybug_dump'), array('is_safe' => array('html')))
         );
     }
-
     /**
      * Getter.
      *
@@ -60,10 +53,8 @@ class LadybugExtension extends \Twig_Extension
     public function ladybug_dump()
     {
         $html = call_user_func_array(array($this->ladybug, 'dump'), func_get_args());
-
         return $html;
     }
-
     /**
      * Returns the name of the extension.
      *

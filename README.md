@@ -10,24 +10,6 @@ This bundle provides an easy and extensible var_dump/print_r replacement for
 Symfony2 projects, both in controllers or Twig templates. For example, with this
 bundle, the following is possible:
 
-``` php
-<?php
-    class UserController extends Controller
-    {
-        public function userAction($username) {
-            ladybug_dump($username); // or just ld($username)
-        }
-    }
-```
-
-``` jinja
-{{ user.username|ladybug_dump }}
-```
-
-Getting as a result:
-
-<img style="border:1px solid #ccc; padding:1px" src="https://github.com/raulfraile/LadybugBundle/raw/master/Resources/doc/images/string_example.png" />
-
 ## Installation
 
 ### Step 1: Composer
@@ -36,6 +18,13 @@ Add the following line to the `composer.json` file:
 
 ``` json
 {
+	"repositories":
+    [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Cosmospace/LadybugBundle"
+        }
+    ],
     "require": {
         "raulfraile/ladybug-bundle": "~1.0"
     }
@@ -69,6 +58,25 @@ public function registerBundles()
 ```
 
 ## Examples
+
+``` php
+<?php
+    class UserController extends Controller
+    {
+        public function userAction($username) {
+            ladybug_dump($username); // or just ld($username)
+        }
+    }
+```
+
+``` jinja
+{{ user.username|ladybug_dump }}
+```
+
+Getting as a result:
+
+<img style="border:1px solid #ccc; padding:1px" src="https://github.com/raulfraile/LadybugBundle/raw/master/Resources/doc/images/string_example.png" />
+
 
 It is possible to dump any variable, including arrays, objects and resources:
 
